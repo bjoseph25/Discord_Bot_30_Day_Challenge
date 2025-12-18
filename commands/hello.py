@@ -10,6 +10,6 @@ intents.message_content = True
 bot = commands.Bot(command_prefix='$', intents=intents)
 
 @bot.command()
-async def hello(ctx, *arg):
+async def run(ctx, *arg):
     await ctx.send("Hello") # Test 
 

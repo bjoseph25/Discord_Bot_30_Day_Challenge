@@ -12,12 +12,12 @@ for filename in os.listdir(commands_folder):
         commands[module_name] = module
          
 
-async def hello_command(ctx, command_name, *args):
+async def handle_command(ctx, command_name, *args):
     print("Loaded commands:", list(commands.keys()))  # debug
     print("Command received:", command_name)         # debug
     if command_name in commands:
         try:
-            await commands[command_name].hello(ctx, *args)
+            await commands[command_name].run(ctx, *args)
         except Exception as e:
             await ctx.send(f"Error: {e}")
     else:
