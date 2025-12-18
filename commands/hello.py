@@ -1,0 +1,15 @@
+import discord
+from discord.ext import commands
+
+name = "hello"
+description = "A simple hello command"
+
+intents = discord.Intents.default()
+intents.message_content = True
+
+bot = commands.Bot(command_prefix='$', intents=intents)
+
+@bot.command()
+async def hello(ctx, *arg):
+    await ctx.send("Hello") # Test 
+

@@ -4,6 +4,7 @@ import os
 import discord
 from dotenv import load_dotenv
 from pathlib import Path
+from handlers.command_handler import hello_command
 
 # Load environment variables from config/.env (if you keep your .env in the config folder)
 env_path = Path(__file__).parent / 'config' / '.env'
@@ -28,6 +29,8 @@ async def on_message(message):
 
     if message.content.startswith('$hello'):
         await message.channel.send('Hello!')
+    
+    await hello_command(message.channel, command_name='hello', *message.content.split()[1:])
 
 client.run(TOKEN)
 
