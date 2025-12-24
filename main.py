@@ -15,6 +15,7 @@ TOKEN = os.getenv('DISCORD_TOKEN')   # My Discord Bot Token
 GUILD = os.getenv('DISCORD_GUILD')   # My Discord Guild Name
 
 intents = discord.Intents.default()
+intents.message_content = True
 
 client = discord.Client(intents=intents)
 
@@ -26,11 +27,16 @@ async def on_ready():
 async def on_message(message):
     if message.author == client.user:
         return
-
-    if message.content.startswith('$hello'):
-        await message.channel.send('Hello!')
     
-    await handle_command(message.channel, command_name='hello', *message.content.split()[1:])
+    parts = message.content.split()
+    if not parts:
+        return 
+    
+    command = parts[0]  # remove $ prefix
+    args = parts[1:]
+
+    # pass the whole message as ctx
+    await handle_command(message, command, *args)
 
 client.run(TOKEN)
 

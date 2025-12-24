@@ -19,7 +19,7 @@ async def handle_command(ctx, command_name, *args):
         try:
             await commands[command_name].run(ctx, *args)
         except Exception as e:
-            await ctx.send(f"Error: {e}")
+            await ctx.channel.send(f"Error: {e}")
     else:
-        await ctx.send("Unknown command.")
+        await ctx.channel.send("Unknown command.")
 
