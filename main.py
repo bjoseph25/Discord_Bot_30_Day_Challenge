@@ -32,7 +32,7 @@ async def on_message(message):
     if not parts:
         return 
     
-    command = parts[0]  # remove $ prefix
+    command = parts[0][1:]  # remove $ prefix
     args = parts[1:]
 
     # pass the whole message as ctx
