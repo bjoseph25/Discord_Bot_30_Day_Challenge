@@ -38,7 +38,7 @@ Separation of Concerns
 Infrastructure-level concerns (logging, caching) are isolated from business logic.
 
 🗂️ Project Structure
-Discord_Bot/
+```Discord_Bot/
 ├── main.py                      # Application entry point & event wiring
 ├── handlers/
 │   └── command_handler.py       # Central command routing
@@ -47,7 +47,7 @@ Discord_Bot/
 │   ├── bot_cache.py             # In-memory caching layer
 │   └── logging_config.py        # Centralized logging configuration
 ├── config/
-│   └── .env                     # Environment variables
+│   └── .env                     # Environment variables ```
 
 
 The infrastructure/ layer contains cross-cutting system concerns that support the application without being tied to specific commands.
