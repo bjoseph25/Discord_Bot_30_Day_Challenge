@@ -119,9 +119,9 @@ Feedback, suggestions, and critiques are always welcome.
 
 🔗 Links
 
-GitHub Repository: [add link here](https://github.com/bjoseph25/Discord_Bot_30_Day_Challenge)
+GitHub Repository: [https://github.com/bjoseph25/Discord_Bot_30_Challenge](https://github.com/bjoseph25/Discord_Bot_30_Day_Challenge)
 
-Build in Public Updates: [optional (LinkedIn / blog)](https://www.linkedin.com/in/brandonjosephcs/)
+Build in Public Updates: [https://www.linkedin.com/in/brandonjosephcs](https://www.linkedin.com/in/brandonjosephcs/)
 
 ⭐ For Reviewers
 
