@@ -11,4 +11,4 @@ intents.message_content = True
 
 #@bot.command()
 async def run(ctx, *arg):
-    await ctx.channel.send("Hello") # Test 
+    await ctx.channel.send(f"Hello  @{ctx.author}") # Test 

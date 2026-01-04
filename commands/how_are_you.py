@@ -12,7 +12,7 @@ intents.message_content = True
 
 #@bot.command()
 async def run(ctx, *arg):
-    await ctx.channel.send("How are you") # Test 
+    await ctx.channel.send(f"How are you  @{ctx.author}") # Test 
     await asyncio.sleep(1)
-    await ctx.channel.send("I'm doing well how bout you")
+    await ctx.channel.send(f"I'm doing well how bout you  @{ctx.author}")
     
