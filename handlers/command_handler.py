@@ -4,6 +4,10 @@ import time
 from infrastructure.bot_cache import response_time_cache, data_cache
 from infrastructure.logging import setup_logging
 from infrastructure.error_logging import handle_error
+from infrastructure.rate_limiting import RateLimiter
+
+rate_limiter = RateLimiter(limit=5, window=10)
+
 
 
 logger = setup_logging()
@@ -33,6 +37,12 @@ async def handle_command(ctx, command_name, *args):
         if command_name not in commands:
             await commands[command_name].run(ctx, *args)
             return
+        rate_key = f"{ctx.author.id}:{command_name}"
+
+        if not rate_limiter.check(rate_key):
+            await ctx.channel.send("⏳ You're doing that too fast. Please slow down.")
+            return
+
             
         # Check if command result is cached
         if cache_key in data_cache:
