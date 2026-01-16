@@ -1,2 +1,4 @@
 discord.py
 python-dotenv
+cachetools==5.3.1
+requests==2.31.0
