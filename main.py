@@ -5,9 +5,29 @@ import discord
 from dotenv import load_dotenv
 from pathlib import Path
 from handlers.command_handler import handle_command
+from infrastructure.rate_limiting import RateLimiter
+from infrastructure.logging import setup_logging
+import importlib
+
 
 # Load environment variables from config/.env (if you keep your .env in the config folder)
 env_path = Path(__file__).parent / 'config' / '.env'
+
+rate_limiter = RateLimiter(limit=5, window=10)
+
+
+
+logger = setup_logging()
+
+commands = {}
+
+commands_folder = os.path.join(os.path.dirname(__file__),"..", "commands")
+
+for filename in os.listdir(commands_folder):
+    if filename.endswith(".py") and filename != "__init__.py":
+        module_name = filename[:-3]
+        module = importlib.import_module(f"commands.{module_name}")
+        commands[module_name] = module
 
 load_dotenv(dotenv_path=env_path)
 
