@@ -4,8 +4,6 @@ FROM python:3.11-slim
 # 2. Set a working directory inside the container
 WORKDIR /app
 
-COPY config/.env /app/config/.env
-
 # 3. Copy dependency list first (for caching)
 COPY requirements.txt .
 
