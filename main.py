@@ -8,6 +8,13 @@ from handlers.command_handler import handle_command
 from infrastructure.rate_limiting import RateLimiter
 from infrastructure.logging import setup_logging
 import importlib
+from events.on_ready import on_ready as handle_on_ready
+from events.on_message import on_message as handle_on_message
+from infrastructure.database import connect, init_db
+
+DB_PATH = "data/bot.db"
+conn = connect(DB_PATH)
+init_db(conn)
 
 
 # Load environment variables from config/.env (if you keep your .env in the config folder)
@@ -21,7 +28,7 @@ logger = setup_logging()
 
 commands = {}
 
-commands_folder = os.path.join(os.path.dirname(__file__),"..", "commands")
+commands_folder = os.path.join(os.path.dirname(__file__), "commands")
 
 for filename in os.listdir(commands_folder):
     if filename.endswith(".py") and filename != "__init__.py":
@@ -41,22 +48,11 @@ client = discord.Client(intents=intents)
 
 @client.event
 async def on_ready():
-    print(f'We have logged in as {client.user}')
+    await handle_on_ready(client)
 
 @client.event
 async def on_message(message):
-    if message.author == client.user:
-        return
-    
-    parts = message.content.split()
-    if not parts:
-        return 
-    
-    command = parts[0][1:]  # remove $ prefix
-    args = parts[1:]
-
-    # pass the whole message as ctx
-    await handle_command(message, command, *args)
+    await handle_on_message(message, client)
 
 client.run(TOKEN)
 

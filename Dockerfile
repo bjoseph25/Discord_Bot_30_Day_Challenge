@@ -4,6 +4,14 @@ FROM python:3.11-slim
 # 2. Set a working directory inside the container
 WORKDIR /app
 
+# Copy main app files
+COPY main.py /app/
+COPY handlers/ /app/handlers/
+COPY infrastructure/ /app/infrastructure/
+
+# Copy commands folder
+COPY commands/ /app/commands/
+
 # 3. Copy dependency list first (for caching)
 COPY requirements.txt .
 
